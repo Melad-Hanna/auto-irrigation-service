@@ -14,6 +14,15 @@ public class PlotServiceImpl implements PlotService {
     private final PlotDao plotDao;
     private final PlotTransformer plotTransformer;
 
+    @Override
+    public PlotTransformer getTransformer() {
+        return plotTransformer;
+    }
+
+    @Override
+    public PlotDao getDao() {
+        return plotDao;
+    }
 
     public PlotDto create(PlotDto plotDto) {
         return null;

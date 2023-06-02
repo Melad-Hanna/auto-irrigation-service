@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class PlotTimeSlotDaoImpl implements PlotTimeSlotDao {
+public class PlotConfigDaoImpl implements PlotConfigDao {
     private final PlotConfigRepo plotConfigRepo;
 
     @Override
