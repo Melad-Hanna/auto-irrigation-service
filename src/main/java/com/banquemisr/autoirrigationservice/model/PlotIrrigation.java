@@ -20,13 +20,13 @@ public class PlotIrrigation extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plot_config_id")
+    @JoinColumn(name = "plot_slot_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private PlotCrop plotCrop;
+    private PlotSlot plotSlot;
 
-    @Column(name = "plot_config_id", insertable = false, updatable = false)
-    private Long plotConfigId;
+    @Column(name = "plot_slot_id", insertable = false, updatable = false)
+    private Long plotSlotId;
 
     @Column(name = "date")
     private LocalDate date;

@@ -1,5 +1,6 @@
 package com.banquemisr.autoirrigationservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PlotConfigDto extends BaseDto {
+public class PlotSlotDto extends BaseDto {
 
     private Long id;
 
-    private PlotCropDto plotCrop;
-    @NotNull(message = "this field is required")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long plotCropId;
 
     private TimeSlotDto timeSlot;

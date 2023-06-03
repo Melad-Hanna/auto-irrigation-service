@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS plot_crop
     marked_as_deleted boolean                NOT NULL DEFAULT false,
     PRIMARY KEY (id),
     CONSTRAINT plot_crop_plot_id_fk FOREIGN KEY (plot_id) REFERENCES plot (id),
-    CONSTRAINT plot_crop_plot_id_fk FOREIGN KEY (crop_id) REFERENCES crop (id)
+    CONSTRAINT plot_crop_crop_id_fk FOREIGN KEY (crop_id) REFERENCES crop (id)
 );
 
-CREATE TABLE IF NOT EXISTS plot_config
+CREATE TABLE IF NOT EXISTS plot_slot
 (
     id                 bigint unsigned        NOT NULL AUTO_INCREMENT,
     plot_crop_id       bigint unsigned        NOT NULL,
@@ -71,14 +71,14 @@ CREATE TABLE IF NOT EXISTS plot_config
     modified_by        character varying(100) NOT NULL,
     marked_as_deleted  boolean                NOT NULL DEFAULT false,
     PRIMARY KEY (id),
-    CONSTRAINT plot_config_plot_crop_id_fk FOREIGN KEY (plot_crop_id) REFERENCES plot_crop (id),
-    CONSTRAINT plot_config_time_slot_id_fk FOREIGN KEY (time_slot_id) REFERENCES time_slot (id)
+    CONSTRAINT plot_slot_plot_crop_id_fk FOREIGN KEY (plot_crop_id) REFERENCES plot_crop (id),
+    CONSTRAINT plot_slot_time_slot_id_fk FOREIGN KEY (time_slot_id) REFERENCES time_slot (id)
 );
 
 CREATE TABLE IF NOT EXISTS plot_irrigation
 (
     id                bigint unsigned        NOT NULL AUTO_INCREMENT,
-    plot_config_id    bigint unsigned        NOT NULL,
+    plot_slot_id      bigint unsigned        NOT NULL,
     date              date                   NOT NULL,
     status            character varying(50),
 
@@ -88,5 +88,5 @@ CREATE TABLE IF NOT EXISTS plot_irrigation
     modified_by       character varying(100) NOT NULL,
     marked_as_deleted boolean                NOT NULL DEFAULT false,
     PRIMARY KEY (id),
-    CONSTRAINT plot_irrigation_plot_config_id_fk FOREIGN KEY (plot_config_id) REFERENCES plot_config (id)
+    CONSTRAINT plot_irrigation_plot_slot_id_fk FOREIGN KEY (plot_slot_id) REFERENCES plot_slot (id)
 );

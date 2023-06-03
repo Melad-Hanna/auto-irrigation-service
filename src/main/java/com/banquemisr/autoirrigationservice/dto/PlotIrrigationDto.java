@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class PlotIrrigationDto extends BaseDto {
     private Long id;
 
-    private PlotConfigDto plotTimeSlot;
+    private PlotSlotDto plotTimeSlot;
 
     private LocalDate date;
 

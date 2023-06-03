@@ -10,8 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "plot_config")
-public class PlotConfig extends BaseEntity {
+@Table(name = "plot_slot")
+public class PlotSlot extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
