@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
+        uses = {PlotSlotMapper.class},
         config = BaseMapperConfig.class)
 public interface PlotCropMapper extends BaseMapper<PlotCrop, PlotCropDto> {
 }

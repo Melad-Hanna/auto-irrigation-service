@@ -1,5 +1,5 @@
 -- liquibase formatted sql
--- changeset Melad:create_schema
+-- changeset Melad:20230603-create-schema
 
 CREATE TABLE IF NOT EXISTS plot
 (

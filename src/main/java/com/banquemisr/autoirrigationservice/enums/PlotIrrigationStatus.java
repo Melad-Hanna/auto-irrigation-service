@@ -1,9 +1,10 @@
 package com.banquemisr.autoirrigationservice.enums;
 
 public enum PlotIrrigationStatus {
-    RUNNING("RUNNING"),
+    SUCCESS("SUCCESS"),
     SENSOR_NOT_RESPONDING("SENSOR_NOT_RESPONDING"),
-    FINISHED("FINISHED");
+    SENSOR_ALREAD_RUNNING("SENSOR_ALREAD_RUNNING"),
+    SENSOR_ERROR("SENSOR_ERROR");
 
     private final String status;
 

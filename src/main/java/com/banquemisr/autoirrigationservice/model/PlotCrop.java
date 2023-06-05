@@ -4,13 +4,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.MERGE;
 
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "plot_config")
+@Table(name = "plot_crop")
 public class PlotCrop extends BaseEntity {
 
     @Id
@@ -34,4 +39,8 @@ public class PlotCrop extends BaseEntity {
 
     @Column(name = "crop_id", insertable = false, updatable = false)
     private Long cropId;
+
+    @OneToMany(mappedBy = "plotCrop", cascade = MERGE, fetch = FetchType.LAZY)
+    @Where(clause = "marked_as_deleted = false")
+    private Set<PlotSlot> plotSlots;
 }
