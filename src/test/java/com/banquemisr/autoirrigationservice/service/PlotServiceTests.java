@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -25,6 +26,24 @@ public class PlotServiceTests {
     @MockBean
     private PlotDao plotDao;
 
+    @Test
+    public void FindPlotById_OutputPlotDto() {
+        // PREPARE
+        Plot plot = new Plot();
+        plot.setId(1L);
+        plot.setLabel("Plot 1");
+        PlotDto plotDto = plotService.getTransformer().transformEntityToDTO(plot);
+
+        // MOCK
+        when(plotDao.findById(any())).thenReturn(Optional.of(plot));
+
+        // DO SHIT
+        PlotDto result = plotService.findById(1L);
+
+        // VERIFY
+        assertEquals(plotDto, result);
+        verify(plotDao, times(1)).findById(1L);
+    }
 
     @Test
     public void CreatePlot_InputPlotDto_OutputPlotDto() {
@@ -42,10 +61,10 @@ public class PlotServiceTests {
 
         // DO SHIT
         PlotDto plotDto = plotService.create(toBeCreatedPlotDto);
-        assertInstanceOf(PlotDto.class, plotDto);
-        assertEquals(shouldBeCreatedPlot.getLabel(), plotDto.getLabel());
 
         // VERIFY
+        assertInstanceOf(PlotDto.class, plotDto);
+        assertEquals(shouldBeCreatedPlot.getLabel(), plotDto.getLabel());
         verify(plotDao, times(1)).create((Plot) any());
     }
 }
